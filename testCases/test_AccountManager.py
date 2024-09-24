@@ -8,8 +8,8 @@ import random
 @pytest.mark.usefixtures("driver")
 class Test_account_manager:
     baseURL = "https://dev-focus.testd.com"
-    email = "anu@testd.com"
-    password = "Cherry@12"
+    email = "anu+june13@testd.com"
+    password = "Test@123"
 
     first_name = "QA_Account"
     last_name = "Testing"
@@ -52,7 +52,7 @@ class Test_account_manager:
         self.account.setAccountCity(self.city)
         self.account.setAccountZipCode(self.zipcode)
         self.account.clickAccountCreateButton()
-        time.sleep(2)
+        time.sleep(5)
 
         self.lp.clickLogout()
         time.sleep(2)

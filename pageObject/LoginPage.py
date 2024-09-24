@@ -24,8 +24,11 @@ class LoginPage:
         driver.maximize_window()
 
     def setEmail(self, email):
-        self.driver.find_element(By.XPATH, self.textbox_email_xpath).clear()
-        self.driver.find_element(By.XPATH, self.textbox_email_xpath).send_keys(email)
+        email_input = self.driver.find_element(By.XPATH, self.textbox_email_xpath)
+        email_input.clear()
+        email_input.send_keys(email)
+        assert email_input.get_attribute(
+            "value") == email, f"Expected email '{email}' but got '{email_input.get_attribute('value')}'"
         assert email
 
     def setPassword(self, password):

@@ -94,7 +94,7 @@ class Agent_Manager:
 
     def setAgentInvitation(self):
         self.driver.find_element(By.XPATH, self.agent_SMS_checkbox_xpath).click()
-        self.driver.find_element(By.XPATH, self. agent_email_checkbox_xpath).click()
+        self.driver.find_element(By.XPATH, self.agent_email_checkbox_xpath).click()
 
     def clickAgentInvitation(self):
         self.driver.find_element(By.XPATH, self.agent_invitation_xpath).click()

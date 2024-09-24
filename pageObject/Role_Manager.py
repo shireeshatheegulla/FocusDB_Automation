@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import Keys, ActionChains
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,9 +16,6 @@ class Role_manager:
     role_drop_xpath = "//div[@id='role-modules-dnd-selectedArea']"
 
     def __init__(self, driver):
-        self.target_element = None
-        self.source_element = None
-        self.actions = None
         self.driver = driver
         driver.maximize_window()
 
@@ -39,25 +36,22 @@ class Role_manager:
         self.driver.find_element(By.XPATH, self.role_create_btn_xpath).click()
 
     def dragAndDropRoles(self):
-        # # Find all source elements
-        # self.source_element = self.driver.find_elements(By.CSS_SELECTOR, "#role-modules-dnd-availableArea")
-        # self.target_element = self.driver.find_element(By.CSS_SELECTOR, '#role-modules-dnd-selectedArea')
-        #
-        # self.actions = ActionChains(self.driver)
-        #
-        # # for source_element in source_elements:
-        # self.actions.click_and_hold(self.source_element).move_by_offset(0, 100).move_to_element(self.target_element).release().perform()
-        # # Optionally add a pause if needed
-        # # time.sleep(1)
-        wait = WebDriverWait(self.driver, 10)  # Wait up to 10 seconds
-        self.source_element = wait.until(
-            EC.visibility_of_element_located((By.ID, 'role-modules-dnd-availableArea')))
-        self.target_element = wait.until(EC.visibility_of_element_located((By.ID, 'role-modules-dnd-selectedArea')))
+        dashboard = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='role-modules-dnd-availableBox-0']"))
+        )
+        target_element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='role-modules-dnd-selectedArea']"))
+        )
 
-        self.actions = ActionChains(self.driver)
-        self.actions.click_and_hold(self.source_element).move_to_element(self.target_element).release().perform()
+        # Initialize ActionChains
+        actions = ActionChains(self.driver)
 
-        time.sleep(3)
+        # Perform the drag-and-drop action
+        # actions.drag_and_drop(dashboard, target_element).perform()
+        actions.click_and_hold(dashboard).move_to_element(target_element).release().perform()
+
+        # Pause for 2 seconds to observe the result
+        time.sleep(5)
 
     def clickSaveBtn(self):
         self.driver.find_element(By.XPATH, "//button[@id='role-modules-submit-button']").click()

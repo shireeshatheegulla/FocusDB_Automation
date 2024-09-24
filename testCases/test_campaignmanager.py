@@ -10,8 +10,8 @@ import random
 @pytest.mark.usefixtures("driver")
 class Test_001_Campaign:
     baseURL = "https://dev-focus.testd.com"
-    email = "anu@testd.com"
-    password = "Cherry@12"
+    email = "anu+june13@testd.com"
+    password = "Test@123"
 
     campaign_name = "QA_selenium_campaign" + str(random.randint(1, 9999))
     phone_number = "9090909090"

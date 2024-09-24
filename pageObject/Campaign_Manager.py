@@ -86,6 +86,14 @@ class Campaign_Manager:
     def campaign_manager_dropdown(self):
         self.driver.find_element(By.XPATH, self.campaign_Manager_xpath).click()
 
+        # Wait for the dropdown options to be visible (adjust the XPath as needed)
+        wait = WebDriverWait(self.driver, 5)
+        options_visible = wait.until(
+            EC.visibility_of_element_located((By.XPATH, "YOUR_OPTIONS_XPATH")))  # Replace with actual XPath
+
+        # Assert that the options are visible
+        assert options_visible.is_displayed(), "Dropdown options are not visible!"
+
     def campaign_manager_dropdown_active(self):
         self.driver.find_element(By.XPATH, self.campaign_Manager_active_campaign_xpath).click()
 
@@ -256,8 +264,3 @@ class Campaign_Manager:
 
     def clickDone_btn(self):
         self.driver.find_element(By.XPATH, self.Done_btn).click()
-
-
-
-
-

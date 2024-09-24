@@ -1,0 +1,51 @@
+{
+  "LS_ACCOUNT_LAST_LOGIN_TIMESTAMP": "2024-08-27T08:16:36.016Z",
+  "SYSTEM_TIMEZONE": "Indian/Maldives",
+  "LS_MODULES": [{"_id":"667bc441fa5d61ef9e89af8b",
+    "name":"Dashboard",
+    "access":"Admin"},
+    {
+      "_id":"667bc441fa5d61555889af8c",
+      "name":"ClientManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d611fea89af8d",
+      "name":"CampaignManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d61a25989af8e",
+      "name":"CaseManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d6108b089af8f",
+      "name":"CallManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d61f44189af90",
+      "name":"ActivityManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d61f7c989af91",
+      "name":"CommunicationsManager",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d61234189af92",
+      "name":"Reporting",
+      "access":"Admin"
+    },
+    {
+      "_id":"667bc441fa5d61cd3a89af93",
+      "name":"ControlCenter",
+      "access":"Admin"}],
+  "LS_ACCOUNT":{"has_consumer_access":false,"reset_password_initiated":false,"registration_expiration_initiated":true,"access_to_campaign_ids":[null,"66cf0b6f89ea530ca0e03d50"],"_id":"66751d9b2195325463ab92c0","first_name":"QA","last_name":"Testing","phone":"9090909090","email":"shireesha.theegulla12.3@gmail.com","address":"hyd","state":"Idaho","city":"hyd","zip_code":"90909","created_timestamp":"2024-06-21T06:28:43.629Z","modified_timestamp":"2024-08-28T11:35:11.859Z","status":"ACTIVE","type":"ACCOUNT","created_by_account_id":"66168d2f58e124465188cd1e","__v":0},
+  "LS_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njc1MWQ5YjIxOTUzMjU0NjNhYjkyYzAiLCJzZXNzaW9uX2lkIjoiNjZlMTY5ZGY4OWVhNTM4MGRhZTExNTg3IiwiY2xpZW50X2lkIjoiNjYxNjhiMGU1OGUxMjQ2OTA0ODhjYmRmIiwiZnVsbF9uYW1lIjoiUUEgVGVzdGluZyIsInR5cGUiOiJBQ0NPVU5UIiwiYWNjZXNzX3RvX2NhbXBhaWduX2lkcyI6W10sImhhc19jb25zdW1lcl9hY2Nlc3MiOmZhbHNlLCJzeXN0ZW1fdGltZXpvbmUiOiJJbmRpYW4vTWFsZGl2ZXMiLCJyb2xlX2lkIjoiNjYxNjhiMGY1OGUxMjQyN2I2ODhjYmUzIiwicm9sZV90eXBlIjoiQURNSU4iLCJpc19henVyZV9sb2dpbiI6ZmFsc2UsImlhdCI6MTcyNjA0ODczNX0.PsqNaj6GZp3hhof2snm8Hxoe9j9ylL9kLG-Kwn7JtZs",
+  "_gre captcha": "09AM2HMKgi3SL0PEpyQCFdI_7EKcrhzBXoQVVMzEx8wDnFSJtxSEXnv0-SE0eSOB7fiuctzpirrEQvYJQ-pw5QwmTBF5CU8hzMkeOZtA",
+  "LS_ROLE_TYPE": "ADMIN",
+  "loglevel": "INFO"
+}

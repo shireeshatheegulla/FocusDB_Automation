@@ -8,8 +8,8 @@ import random
 @pytest.mark.usefixtures("driver")
 class Test_agent_manager:
     baseURL = "https://dev-focus.testd.com"
-    email = "anu@testd.com"
-    password = "Cherry@12"
+    email = "anu+june13@testd.com"
+    password = "Test@123"
 
     firstname = "QA_Agent"
     lastname = "Testing"

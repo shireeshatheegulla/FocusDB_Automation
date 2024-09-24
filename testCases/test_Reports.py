@@ -1,22 +1,17 @@
 import pytest
 
 from pageObject.LoginPage import LoginPage
-from pageObject.Role_Manager import Role_manager
+from pageObject.Reports import Reports
 import time
-import json
-
-# local_storage_file = "C:/Users/91990/PycharmProjects/python-selenium-automation/assets/localStorageData.json"
 
 
 @pytest.mark.usefixtures("driver")
-class Test_Role_manager:
+class Test_Reports_Module:
     baseURL = "https://dev-focus.testd.com"
     email = "anu+june13@testd.com"
     password = "Test@123"
 
-    role_name = "QA_selenium_role"
-
-    def test_role_manager(self, driver):
+    def test_Reports(self, driver):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         time.sleep(3)
@@ -48,15 +43,35 @@ class Test_Role_manager:
         time.sleep(25)
         self.lp.clickLogon()
         time.sleep(10)
-
-        self.role = Role_manager(self.driver)
-        self.role.clickControlCenterBtn()
-        self.role.clickNavbarRole()
-        self.role.clickAddRoleBtn()
-        self.role.setRoleName(self.role_name)
-        self.role.clickCreateRoleBtn()
-        time.sleep(2)
-        self.role.dragAndDropRoles()
+        self.report = Reports(self.driver)
+        self.report.clickReports()
+        self.report.clickCampaign()
+        self.report.clickExport()
         time.sleep(5)
-        self.role.clickSaveBtn()
+        self.report.selectCampaignReportCheckBoxes()
+        self.report.dialog_okay_btn()
+        time.sleep(2)
+        self.report.closeBtn()
+        time.sleep(5)
+
+        self.report.clickCase()
         time.sleep(3)
+        self.report.clickExport()
+        time.sleep(3)
+        self.report.CaseReport()
+        time.sleep(2)
+        self.report.dialog_okay_btn()
+        time.sleep(2)
+        self.report.closeBtn()
+        time.sleep(3)
+
+        self.report.ClickAgentReport()
+        self.report.clickExport()
+        time.sleep(2)
+        self.report.dialog_okay_btn()
+        time.sleep(3)
+        self.report.AgentReportCheckBoxes()
+        self.report.dialog_okay_btn()
+        self.report.closeBtn()
+
+        self.driver.quit()

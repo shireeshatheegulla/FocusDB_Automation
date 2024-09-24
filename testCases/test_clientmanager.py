@@ -11,8 +11,8 @@ import random
 @pytest.mark.usefixtures("driver")
 class Test_001_Login:
     baseURL = "https://dev-focus.testd.com"
-    email = "anu@testd.com"
-    password = "Cherry@12"
+    email = "anu+june13@testd.com"
+    password = "Test@123"
 
     client_name = "QA_selenium_client_july_" + str(random.randint(1, 9999999))
     client_phone = "909090909090"
