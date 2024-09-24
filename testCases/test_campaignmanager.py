@@ -32,8 +32,8 @@ class Test_001_Campaign:
         self.lp = LoginPage(self.driver)
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
-        time.sleep(50)
-
+        # time.sleep(50)
+        self.lp.clickRecaptcha()
         self.lp.clickLogon()
 
         self.campaign = Campaign_Manager(self.driver)

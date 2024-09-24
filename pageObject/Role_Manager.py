@@ -36,22 +36,36 @@ class Role_manager:
         self.driver.find_element(By.XPATH, self.role_create_btn_xpath).click()
 
     def dragAndDropRoles(self):
-        dashboard = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='role-modules-dnd-availableBox-0']"))
-        )
-        target_element = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='role-modules-dnd-selectedArea']"))
-        )
-
-        # Initialize ActionChains
         actions = ActionChains(self.driver)
 
-        # Perform the drag-and-drop action
-        # actions.drag_and_drop(dashboard, target_element).perform()
-        actions.click_and_hold(dashboard).move_to_element(target_element).release().perform()
+        # Wait until the target element is present
+        target_element = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '//*[@id="role-modules-dnd-selectedArea"]'))
+        )
 
-        # Pause for 2 seconds to observe the result
-        time.sleep(5)
+        # Get all source elements
+        source_elements = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_all_elements_located((By.XPATH, '//*[@id="role-modules-dnd-availableArea"]/*'))
+        )
+
+        # Loop through each source element and perform drag and drop
+        for source_element in source_elements:
+            # Start the drag-and-drop operation
+            actions.click_and_hold(source_element).perform()
+            start_time = time.time()
+
+            # Calculate the distance to drag (adjust as needed)
+            distance = 100  # Example: 100 pixels downward
+
+            # Perform the drag action over 200 milliseconds
+            while (time.time() - start_time) < 0.2:
+                actions.move_by_offset(0, distance / 2).perform()
+                time.sleep(0.1)  # Sleep to control the duration of the drag
+
+            actions.move_to_element(target_element).release().perform()
+
+            # Optional: Pause for 2 seconds to observe the drag-and-drop action
+            time.sleep(1)  # Adjust the sleep time as needed
 
     def clickSaveBtn(self):
         self.driver.find_element(By.XPATH, "//button[@id='role-modules-submit-button']").click()

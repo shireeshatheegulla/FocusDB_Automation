@@ -38,9 +38,8 @@ class Test_Reports_Module:
 
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
-
-        # self.lp.clickRecaptcha()
-        time.sleep(25)
+        self.lp.clickRecaptcha()
+        # time.sleep(25)
         self.lp.clickLogon()
         time.sleep(10)
         self.report = Reports(self.driver)

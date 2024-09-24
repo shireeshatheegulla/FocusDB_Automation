@@ -22,9 +22,8 @@ class Test_agent_manager:
         time.sleep(3)
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
-
-        # self.lp.clickRecaptcha()
-        time.sleep(25)
+        self.lp.clickRecaptcha()
+        # time.sleep(25)
         self.lp.clickLogon()
         time.sleep(10)
 

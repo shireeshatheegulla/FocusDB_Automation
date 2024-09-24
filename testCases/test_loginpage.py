@@ -52,8 +52,7 @@ class Test_001_Login:
         time.sleep(5)
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
-        time.sleep(30)
-
+        self.lp.clickRecaptcha()
         self.lp.clickLogon()
         time.sleep(3)
         self.lp.clickLogout()

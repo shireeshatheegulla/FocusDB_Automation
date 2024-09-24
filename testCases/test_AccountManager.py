@@ -26,9 +26,7 @@ class Test_account_manager:
         time.sleep(3)
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
-
-        # self.lp.clickRecaptcha()
-        time.sleep(25)
+        self.lp.clickRecaptcha()
         self.lp.clickLogon()
         time.sleep(10)
 

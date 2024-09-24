@@ -43,9 +43,10 @@ class Test_Role_manager:
 
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
+        self.lp.clickRecaptcha()
 
         # self.lp.clickRecaptcha()
-        time.sleep(25)
+        # time.sleep(25)
         self.lp.clickLogon()
         time.sleep(10)
 

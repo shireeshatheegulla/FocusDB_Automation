@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 from selenium.webdriver.support import wait
+from selenium_recaptcha_solver import RecaptchaSolver
 
 
 class LoginPage:
@@ -35,24 +36,21 @@ class LoginPage:
         self.driver.find_element(By.XPATH, self.textbox_password_xpath).clear()
         self.driver.find_element(By.XPATH, self.textbox_password_xpath).send_keys(password)
 
-    # def clickRecaptcha(self): # recaptcha_iframe = self.driver.find_element(By.XPATH, "//iframe[
-    # @title='reCAPTCHA']") # self.driver.switch_to.frame(recaptcha_iframe) # site_key = self.driver.find_element(
-    # By.XPATH, "//div[@class='rc-anchor-alert']").get_attribute('data-sitekey') #
-    # self.driver.switch_to.default_content() # # # Use 2Captcha to solve reCAPTCHA # api_key =
-    # 'YOUR_2CAPTCHA_API_KEY' # client = AnticaptchaClient(api_key) # task = NoCaptchaTaskProxyless(
-    # site_key=site_key, url=self.driver.current_url) # job = client.createTask(task) # job.join() # token =
-    # job.get_solution_response() # # # Enter the token into the reCAPTCHA response field and submit the form #
-    # self.driver.execute_script('document.getElementById("g-recaptcha-response").innerHTML = arguments[0]',
-    # token) # self.driver.find_element(By.XPATH, "//form").submit()
-    #
-    #     recaptcha_element = WebDriverWait(self.driver, 10).until(
-    #         EC.presence_of_element_located((By.CLASS_NAME, 'g-recaptcha'))
-    #     )
-    #
-    #     # Extract the site key from the reCAPTCHA element
-    #     site_key = recaptcha_element.get_attribute('data-sitekey')
-    #
-    #     print(f"Site key: {site_key}")
+    def clickRecaptcha(self):
+        solver = RecaptchaSolver(driver=self.driver)
+
+        try:
+            # Increase the timeout to 10 seconds to give the iframe time to load
+            recaptcha_iframe = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//iframe[@title="reCAPTCHA"]'))
+            )
+            print("reCAPTCHA iframe located.")
+
+            # Solve the reCAPTCHA by passing the iframe to the solver
+            solver.click_recaptcha_v2(iframe=recaptcha_iframe)
+
+        except TimeoutException:
+            print("TimeoutException: reCAPTCHA iframe not found within the given time.")
 
     def clickLogon(self, xpath=None):
         self.driver.find_element(By.XPATH, self.button_logon_xpath).click()
