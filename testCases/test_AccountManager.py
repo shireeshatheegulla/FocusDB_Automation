@@ -1,25 +1,27 @@
 import pytest
 from pageObject.LoginPage import LoginPage
 from pageObject.Account_Manager import Account_Manager
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import time
 import random
 
 
-@pytest.mark.usefixtures("driver")
-class Test_account_manager:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
+class Test_account_manager(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
     first_name = "QA_Account"
-    last_name = "Testing"
+    last_name = "Testing" + str(random.randint(1, 9))
     department = "testing"
     Phone_number = "9090909090"
-    accEmail = "QA_selenium" + str(random.randint(1, 9999))+"@gmail.com"
+    accEmail = "QA_selenium" + str(random.randint(1, 9999)) + "@gmail.com"
     address = "hyderabad"
     city = "Hyderabad"
     zipcode = "500081"
 
+    @pytest.mark.sanity
     def test_Account(self):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)

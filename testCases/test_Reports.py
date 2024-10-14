@@ -2,16 +2,18 @@ import pytest
 
 from pageObject.LoginPage import LoginPage
 from pageObject.Reports import Reports
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import time
 
 
-@pytest.mark.usefixtures("driver")
-class Test_Reports_Module:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
+class Test_Reports_Module(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
-    def test_Reports(self, driver):
+    @pytest.mark.sanity("setup")
+    def test_Reports(self):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         time.sleep(3)

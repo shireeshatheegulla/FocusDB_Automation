@@ -1,19 +1,18 @@
 import pytest
 from pageObject.LoginPage import LoginPage
 from pageObject.client_manager import Client_Manager
-# from utilities.readProperties import ReadConfig
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 # from selenium.webdriver.support import expected_conditions as EC
 
 import time
 import random
 
 
-@pytest.mark.usefixtures("driver")
-class Test_001_Login:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
-
+class Test_001_Login(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
     client_name = "QA_selenium_client_july_" + str(random.randint(1, 9999999))
     client_phone = "909090909090"
     client_address = "Hyd"
@@ -31,7 +30,8 @@ class Test_001_Login:
     client_secondary_phone = "9090909090"
     client_secondary_ext = "+91"
 
-    def test_login(self):
+    @pytest.mark.sanity
+    def test_client_manager(self):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         time.sleep(3)

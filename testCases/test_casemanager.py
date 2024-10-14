@@ -2,6 +2,8 @@ import pytest
 from pageObject.LoginPage import LoginPage
 from pageObject.CaseManager import CaseManager
 import time
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import warnings
 import json
 
@@ -10,11 +12,10 @@ import json
 # local_storage_file = "C:/Users/91990/PycharmProjects/python-selenium-automation/assets/localStorageData.json"
 
 
-@pytest.mark.usefixtures("driver")
-class Test_CaseManager:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
+class Test_CaseManager(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
     firstname = "QA_case"
     lastname = "Testing"
@@ -25,6 +26,7 @@ class Test_CaseManager:
     shipping_city = "Hyderabad"
     zipcode = "50001"
 
+    @pytest.mark.sanity
     def test_Case(self):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)

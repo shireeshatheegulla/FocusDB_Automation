@@ -2,17 +2,16 @@ import pytest
 
 from pageObject.LoginPage import LoginPage
 from pageObject.Campaign_Manager import Campaign_Manager
-# from utilities.readProperties import ReadConfig
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import time
 import random
 
 
-@pytest.mark.usefixtures("driver")
-class Test_001_Campaign:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
-
+class Test_001_Campaign(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
     campaign_name = "QA_selenium_campaign" + str(random.randint(1, 9999))
     phone_number = "9090909090"
     sla_email = "test@test.com"
@@ -27,7 +26,8 @@ class Test_001_Campaign:
     product_code = "890890890890890"
     product_description = "testing description"
 
-    def test_campaign(self):
+    @pytest.mark.sanity
+    def test_campaign(self, setup):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         self.lp.setEmail(self.email)

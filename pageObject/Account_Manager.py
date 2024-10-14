@@ -21,8 +21,6 @@ class Account_Manager:
     acc_create_btn_xpath = "//button[@id='account-add-submit-button']"
 
     def __init__(self, driver):
-        self.dropdown_element = None
-        self.accRole = None
         self.driver = driver
         driver.maximize_window()
 
@@ -45,8 +43,8 @@ class Account_Manager:
         self.driver.find_element(By.XPATH, self.acc_last_name_xpath).send_keys(last_name)
 
     def setAccountRole(self):
-        self.accRole = self.driver.find_element(By.XPATH, self.acc_role_dropdown_xpath)
-        self.accRole.click()
+        accRole = self.driver.find_element(By.XPATH, self.acc_role_dropdown_xpath)
+        accRole.click()
 
         # self.accRole.send_keys(Keys.ARROW_UP)
         # # self.accRole.send_keys(Keys.ARROW_DOWN)

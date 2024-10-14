@@ -69,17 +69,6 @@ class Campaign_Manager:
     Done_btn = "//button[text()='DONE']"
 
     def __init__(self, driver):
-        self.case_origin_drop = None
-        self.case_origin_drag = None
-        self.country = None
-        self.target_element = None
-        self.source_element = None
-        self.actions = None
-        self.element = None
-        self.Safety_domain = None
-        self.switch = None
-        self.list_item = None
-        self.a_list = None
         self.driver = driver
         driver.maximize_window()
 
@@ -87,12 +76,12 @@ class Campaign_Manager:
         self.driver.find_element(By.XPATH, self.campaign_Manager_xpath).click()
 
         # Wait for the dropdown options to be visible (adjust the XPath as needed)
-        wait = WebDriverWait(self.driver, 5)
-        options_visible = wait.until(
-            EC.visibility_of_element_located((By.XPATH, "YOUR_OPTIONS_XPATH")))  # Replace with actual XPath
+        # wait = WebDriverWait(self.driver, 5)
+        # options_visible = wait.until(
+        #     EC.visibility_of_element_located((By.XPATH, "YOUR_OPTIONS_XPATH")))  # Replace with actual XPath
 
         # Assert that the options are visible
-        assert options_visible.is_displayed(), "Dropdown options are not visible!"
+        # assert options_visible.is_displayed(), "Dropdown options are not visible!"
 
     def campaign_manager_dropdown_active(self):
         self.driver.find_element(By.XPATH, self.campaign_Manager_active_campaign_xpath).click()
@@ -117,33 +106,33 @@ class Campaign_Manager:
         self.driver.find_element(By.XPATH, self.agent_agreement_xpath).click()
         time.sleep(1)
         if value == "80/30":
-            self.a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8030_xpath)
+            a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8030_xpath)
         elif value == "80/20":
-            self.a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8020_xpath)
+            a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8020_xpath)
         elif value == "90/10":
-            self.a_list = self.driver.find_element(By.XPATH, self.agent_agreement_9010_xpath)
+            a_list = self.driver.find_element(By.XPATH, self.agent_agreement_9010_xpath)
         else:
-            self.a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8030_xpath)
+            a_list = self.driver.find_element(By.XPATH, self.agent_agreement_8030_xpath)
         time.sleep(1)
-        self.a_list.click()
+        a_list.click()
 
     def setCase_service_agreement(self, value):
         self.driver.find_element(By.XPATH, self.case_service_xpath).click()
         time.sleep(1)
         if value == "24 hours":
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_24H_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_24H_xpath)
         elif value == "48 hours":
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_48H_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_48H_xpath)
         elif value == "72 hours":
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_72H_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_72H_xpath)
         elif value == "1 week":
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_1week_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_1week_xpath)
         elif value == "2 week":
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_2week_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_2week_xpath)
         else:
-            self.list_item = self.driver.find_element(By.XPATH, self.case_service_24H_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.case_service_24H_xpath)
         time.sleep(1)
-        self.list_item.click()
+        list_item.click()
 
     def setCaseSLA_Phone_btn(self):
         self.driver.find_element(By.XPATH, self.case_SLA_phone_btn_xpath).click()
@@ -180,33 +169,33 @@ class Campaign_Manager:
         self.driver.find_element(By.XPATH, self.case_SLA_eastern_checkbox_xpath).click()
 
     def setOperational_hours(self):
-        self.switch = self.driver.find_element(By.XPATH, self.case_SLA_Monday_Ios_btn_xpath)
-        if not self.switch.is_selected():
-            self.switch.click()
+        switch = self.driver.find_element(By.XPATH, self.case_SLA_Monday_Ios_btn_xpath)
+        if not switch.is_selected():
+            switch.click()
 
     def setCase_Domain(self):
         self.driver.find_element(By.XPATH, self.case_domain_manual_xpath).click()
 
     def setDomain(self):
-        self.element = self.driver.find_element(By.XPATH, self.case_domain_input_xpath)
-        self.element.click()
-        self.element.send_keys(Keys.ARROW_DOWN)
-        self.element.send_keys(Keys.ARROW_DOWN)
-        self.element.send_keys(Keys.ENTER)
-
+        element = self.driver.find_element(By.XPATH, self.case_domain_input_xpath)
+        element.click()
+        element.send_keys(Keys.ARROW_DOWN)
+        element.send_keys(Keys.ARROW_DOWN)
+        element.send_keys(Keys.ENTER)
         time.sleep(2)
 
     def clickClose_btn(self):
-        self.element = self.driver.find_element(By.XPATH, self.case_domain_close_btn_xpath).click()
+        element = self.driver.find_element(By.XPATH, self.case_domain_close_btn_xpath)
+        element.click()
 
     def setAssign_agent(self):
-        self.source_element = self.driver.find_element(By.CSS_SELECTOR, "#campaign-aa-dnd-availableBox-0")
-        self.target_element = self.driver.find_element(By.CSS_SELECTOR, "#campaign-aa-dnd-selectedArea")
+        source_element = self.driver.find_element(By.CSS_SELECTOR, "#campaign-aa-dnd-availableBox-0")
+        target_element = self.driver.find_element(By.CSS_SELECTOR, "#campaign-aa-dnd-selectedArea")
 
-        self.actions = ActionChains(self.driver)
+        actions = ActionChains(self.driver)
 
-        self.actions.click_and_hold(self.source_element).move_by_offset(200, 0).move_to_element(
-            self.target_element).release().perform()
+        actions.click_and_hold(source_element).move_by_offset(200, 0).move_to_element(
+            target_element).release().perform()
 
         time.sleep(3)
 
@@ -240,9 +229,9 @@ class Campaign_Manager:
         self.driver.find_element(By.XPATH, self.product_code).send_keys(Product_code)
 
     def setCountry(self):
-        self.country = self.driver.find_element(By.XPATH, self.product_country)
-        self.country.click()
-        self.country.send_keys(Keys.ARROW_UP, Keys.ENTER)
+        country = self.driver.find_element(By.XPATH, self.product_country)
+        country.click()
+        country.send_keys(Keys.ARROW_UP, Keys.ENTER)
 
     def setProduct_description(self, Product_description):
         self.driver.find_element(By.XPATH, self.product_description).clear()
@@ -252,13 +241,13 @@ class Campaign_Manager:
         self.driver.find_element(By.XPATH, self.case_add_all_btn).click()
 
     def setCaseOrigin(self):
-        self.case_origin_drag = self.driver.find_element(By.CSS_SELECTOR, "#campaign-case_origins-dnd-availableBox-0")
-        self.case_origin_drop = self.driver.find_element(By.CSS_SELECTOR, "#campaign-case_origins-dnd-selectedArea")
+        case_origin_drag = self.driver.find_element(By.CSS_SELECTOR, "#campaign-case_origins-dnd-availableBox-0")
+        case_origin_drop = self.driver.find_element(By.CSS_SELECTOR, "#campaign-case_origins-dnd-selectedArea")
 
-        self.actions = ActionChains(self.driver)
+        actions = ActionChains(self.driver)
 
-        self.actions.click_and_hold(self.case_origin_drag).move_by_offset(200, 0).move_to_element(
-            self.case_origin_drop).release().perform()
+        actions.click_and_hold(case_origin_drag).move_by_offset(200, 0).move_to_element(
+            case_origin_drop).release().perform()
 
         time.sleep(2)
 

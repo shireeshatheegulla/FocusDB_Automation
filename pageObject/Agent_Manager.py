@@ -28,8 +28,6 @@ class Agent_Manager:
     agent_invitation_xpath = "//button[@id='agent-add-submit-button']"
 
     def __init__(self, driver):
-        self.experience_level = None
-        self.list_item = None
         self.driver = driver
         driver.maximize_window()
 
@@ -54,13 +52,13 @@ class Agent_Manager:
     def setAgentRole(self, role=None):
         self.driver.find_element(By.XPATH, self.agent_role_xpath).click()
         if role == "Agent (write)":
-            self.list_item = self.driver.find_element(By.XPATH, self.agent_role_write_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.agent_role_write_xpath)
         # elif value == "Agent (read-only)":
         #     self.list_item = self.driver.find_element(By.XPATH, self.case_service_48H_xpath)
         else:
-            self.list_item = self.driver.find_element(By.XPATH, self.agent_role_read_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.agent_role_read_xpath)
         time.sleep(1)
-        self.list_item.click()
+        list_item.click()
 
     def setAgentPhone(self, phone):
         self.driver.find_element(By.XPATH, self.agent_phone_xpath).clear()
@@ -74,15 +72,15 @@ class Agent_Manager:
         self.driver.find_element(By.XPATH, self.agent_experience_xpath).click()
         time.sleep(1)
         if experience == "Level 1":
-            self.experience_level = self.driver.find_element(By.XPATH, self.agent_level1_xpath)
+            experience_level = self.driver.find_element(By.XPATH, self.agent_level1_xpath)
         elif experience == "Level 2":
-            self.experience_level = self.driver.find_element(By.XPATH, self.agent_level2_xpath)
+            experience_level = self.driver.find_element(By.XPATH, self.agent_level2_xpath)
         elif experience == "Level 3":
-            self.experience_level = self.driver.find_element(By.XPATH, self.agent_level3_xpath)
+            experience_level = self.driver.find_element(By.XPATH, self.agent_level3_xpath)
         else:
-            self.experience_level = self.driver.find_element(By.XPATH, self.agent_level1_xpath)
+            experience_level = self.driver.find_element(By.XPATH, self.agent_level1_xpath)
         time.sleep(1)
-        self.experience_level.click()
+        experience_level.click()
 
     def setAgentNextBtn(self):
         self.driver.find_element(By.XPATH, self.agent_next_btn_xpath).click()

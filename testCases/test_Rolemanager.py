@@ -3,20 +3,23 @@ import pytest
 from pageObject.LoginPage import LoginPage
 from pageObject.Role_Manager import Role_manager
 import time
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import json
+
 
 # local_storage_file = "C:/Users/91990/PycharmProjects/python-selenium-automation/assets/localStorageData.json"
 
 
-@pytest.mark.usefixtures("driver")
-class Test_Role_manager:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
+class Test_Role_manager(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
     role_name = "QA_selenium_role"
 
-    def test_role_manager(self, driver):
+    @pytest.mark.sanity
+    def test_role_manager(self, setup):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         time.sleep(3)

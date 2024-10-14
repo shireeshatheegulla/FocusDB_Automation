@@ -1,29 +1,22 @@
 import pytest
-
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-
 from pageObject.LoginPage import LoginPage
-
 from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import time
-import json
+
+
+# import json
+
 
 # local_storage_file = "C:/Users/91990/PycharmProjects/python-selenium-automation/assets/localStorageData.json"
 
 
-# @pytest.mark.usefixtures("add_environment")
-@pytest.mark.usefixtures("driver")
-class Test_001_Login:
-    baseURL = "https://dev-focus.testd.com"
-    # ReadConfig.getApplicationURL()
+class Test_001_Login(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
-    email = "anu@testd.com"
-    # ReadConfig.getuserEmail()
-    password = "Cherry@12"
-
-    # ReadConfig.getuserPassword()
-
+    @pytest.mark.sanity
     def test_login(self):
         # with open(local_storage_file, 'r') as file:
         #     local_storage_data = json.load(file)
@@ -49,12 +42,14 @@ class Test_001_Login:
         # self.driver = setup
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
-        time.sleep(5)
+        time.sleep(2)
         self.lp.setEmail(self.email)
         self.lp.setPassword(self.password)
         self.lp.clickRecaptcha()
         self.lp.clickLogon()
         time.sleep(3)
+        self.lp.IncomingCall()
+        time.sleep(5)
         self.lp.clickLogout()
         time.sleep(3)
         self.lp.click_btn_Logout_yes()

@@ -1,22 +1,24 @@
 import pytest
 from pageObject.LoginPage import LoginPage
 from pageObject.Agent_Manager import Agent_Manager
+from utilities.readProperties import ReadConfig
+from utilities.BaseClass import BaseClass
 import time
 import random
 
 
-@pytest.mark.usefixtures("driver")
-class Test_agent_manager:
-    baseURL = "https://dev-focus.testd.com"
-    email = "anu+june13@testd.com"
-    password = "Test@123"
+class Test_agent_manager(BaseClass):
+    baseURL = ReadConfig.getApplicationURL()
+    email = ReadConfig.getuserEmail()
+    password = ReadConfig.getuserPassword()
 
     firstname = "QA_Agent"
     lastname = "Testing"
     phone = "9090909090"
     agentEmail = "QA_selenium" + str(random.randint(1, 9999)) + "@gmail.com"
 
-    def test_Account(self):
+    @pytest.mark.sanity
+    def test_Agent(self, setup):
         self.driver.get(self.baseURL)
         self.lp = LoginPage(self.driver)
         time.sleep(3)
@@ -43,4 +45,3 @@ class Test_agent_manager:
         self.agent.setAgentInvitation()
         self.agent.clickAgentInvitation()
         time.sleep(5)
-

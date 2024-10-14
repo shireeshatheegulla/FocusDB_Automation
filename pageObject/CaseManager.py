@@ -150,7 +150,6 @@ class CaseManager:
     closed_xpath = "//li[contains(text(),'Closed')]"
 
     def __init__(self, driver):
-        self.list_item = None
         self.driver = driver
         driver.maximize_window()
 
@@ -450,19 +449,19 @@ class CaseManager:
         time.sleep(1)
 
         if value == 'Wrong product':
-            self.list_item = self.driver.find_element(By.XPATH, self.wrong_product_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.wrong_product_xpath)
         elif value == "Incorrect Quantity":
-            self.list_item = self.driver.find_element(By.XPATH, self.Incorrect_Quantity_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.Incorrect_Quantity_xpath)
         elif value == 'Defective Product':
-            self.list_item = self.driver.find_element(By.XPATH, self.Defective_Product_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.Defective_Product_xpath)
         elif value == 'Undelivered':
-            self.list_item = self.driver.find_element(By.XPATH, self.Undelivered_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.Undelivered_xpath)
         elif value == 'Return to Shipper':
-            self.list_item = self.driver.find_element(By.XPATH, self.Return_to_Shipper_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.Return_to_Shipper_xpath)
         else:
-            self.list_item = self.driver.find_element(By.XPATH, self.wrong_product_xpath)
+            list_item = self.driver.find_element(By.XPATH, self.wrong_product_xpath)
         time.sleep(2)
-        self.list_item.click()
+        list_item.click()
 
     def GenerateRMA(self):
         self.driver.find_element(By.XPATH, self.RMA_Btn_xpath).click()
@@ -504,9 +503,10 @@ class CaseManager:
         element.click()
         # self.driver.find_element(By.XPATH, self.was_replacement_ordered_xpath).click()
         if value == "Yes":
-            self.list_item = self.driver.find_element(By.XPATH, '//li[@data-value="true"]').click()
+            list_item = self.driver.find_element(By.XPATH, '//li[@data-value="true"]')
         else:
-            self.list_item = self.driver.find_element(By.XPATH, '//li[@data-value="false"]').click()
+            list_item = self.driver.find_element(By.XPATH, '//li[@data-value="false"]')
+        list_item.click()
 
     def OrderConfirmationNum(self):
         self.driver.find_element(By.XPATH, self.order_confirmation_num_xpath).clear()
