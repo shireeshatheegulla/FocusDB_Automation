@@ -35,7 +35,8 @@ def setup(request):
             "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
             "Chrome/58.0.3029.110 Safari/537.3")
 
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.delete_all_cookies()
         driver.execute_cdp_cmd("Network.clearBrowserCache", {})
         driver.execute_cdp_cmd("Network.clearBrowserCookies", {})
