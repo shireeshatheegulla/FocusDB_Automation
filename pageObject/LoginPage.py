@@ -68,18 +68,18 @@ class LoginPage:
         try:
             wait_for_element = WebDriverWait(self.driver, 10)
             decline_button = wait_for_element.until(
-                EC.presence_of_element_located((By.XPATH, "//span[text()='Decline']")))
+                EC.presence_of_element_located((By.XPATH, "//span[text()='Accept']")))
 
             # Log visibility and enabled state
             print(f"Is visible: {decline_button.is_displayed()}")
             print(f"Is enabled: {decline_button.is_enabled()}")
             decline_button.click()
-            if decline_button.is_displayed():
-                decline_button.click()
-                print("element clicked")
-                time.sleep(10)
-            else:
-                print("can't click the element")
+            # if decline_button.is_displayed():
+            #     decline_button.click()
+            #     print("element clicked")
+            #     time.sleep(10)
+            # else:
+            #     print("can't click the element")
 
             # Click using JavaScript as a fallback
             # self.driver.execute_script("arguments[0].click();", decline_button)

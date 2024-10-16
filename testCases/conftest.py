@@ -8,10 +8,14 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 import warnings
 
 
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="chrome", help="Choose browser: chrome or edge")
+
+
 @pytest.fixture(scope="class")
 def setup(request):
     browser = request.config.getoption("--browser", default="chrome")
-    service = Service("C:/Users/91990/PycharmProjects/python-selenium-automation/driver/chromedriver.exe")
+    # service = Service("C:/Users/91990/PycharmProjects/python-selenium-automation/driver/chromedriver.exe")
     if browser == "chrome":
         chrome_options = Options()
         chrome_options.add_argument("--disable-extensions")
@@ -46,8 +50,8 @@ def setup(request):
     driver.quit()
 
 
-def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Browser to use for testing")
+# def pytest_addoption(parser):
+#     parser.addoption("--browser", action="store", default="chrome", help="Browser to use for testing")
 
 
 # ------code to generate html report--------

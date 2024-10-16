@@ -52,5 +52,5 @@ class Test_001_Login(BaseClass):
         time.sleep(5)
         self.lp.clickLogout()
         time.sleep(3)
-        self.lp.click_btn_Logout_yes()
-        time.sleep(3)
+        # self.lp.click_btn_Logout_yes()
+        # time.sleep(3)
